@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: brown;
+    background: radial-gradient(circle, rgba(165,42,42,1) 50%, rgba(149,0,0,1) 100%);
 }
 
 .container {
@@ -81,7 +81,7 @@ body {
     height: 100vh;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background: radial-gradient(circle, rgba(247,254,255,1) 50%, rgba(230,230,230,1) 100%);
     transition: opacity 0.7s;
 }
 
@@ -125,7 +125,7 @@ body {
     gap: 20px;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background: radial-gradient(circle, rgba(255,255,255,1) 50%, rgba(164,164,164,1) 100%);
     transition: opacity 0.7s;
     
     --g: 4px;     /* the gap */
