@@ -2,67 +2,73 @@ function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min) ) + min;
 }
 
-function getComputerChoice(){
-    return getRndInteger(1, 4); 
-}
+function resultRound (playerChoice, computerChoice) {
+    
+    let result = "" + playerChoice + computerChoice;
 
-let scoreClient = 0;
-let scoreComputer = 0;
-
-alert("You are going to play 5 rounds of Rock Paper Scissors with the computer");
-
-for (let i=0; i<4; i++) {
-let computerChoice = getComputerChoice();
-let clientChoice = prompt("Enter Rock, Paper or Scissors: ");
-let clientChoiceNum;
-let result;
-
-
-clientChoice = clientChoice.toLowerCase();
-
-switch (clientChoice) {
-    case "rock": clientChoiceNum=1
+    switch (result) {   
+        case "11": 
     break;
-    case "paper": clientChoiceNum=2;
+        case "12": scoreComputer++
     break;
-    case "scissors": clientChoiceNum=3;
+        case "13": scorePlayer++
     break;
-    default: alert ("WRONG INPUT! Won't count. You get 1 less chance.")
+        case "21": scorePlayer++
     break;
-}
-
-result = "" + clientChoiceNum + computerChoice;
-
-switch (result) {
-    case "11": alert("It's a tie")
+        case "22": 
     break;
-    case "12": alert("You lost, paper wins"); scoreComputer++
+        case "23": scoreComputer++
     break;
-    case "13": alert("You won, scissors loses"); scoreClient++
+        case "31": scoreComputer++
     break;
-    case "21": alert("You won, rock loses"); scoreClient++
+        case "32": scorePlayer++
     break;
-    case "22": alert("It's a tie")
-    break;
-    case "23": alert("You lost, scissors wins"); scoreComputer++
-    break;
-    case "31": alert("You lost, rock wins"); scoreComputer++
-    break;
-    case "32": alert("You won, paper loses"); scoreClient++
-    break;
-    case "33": alert("It's a tie")
+        case "33": 
     break;
     
 }
 }
 
-if (scoreClient === scoreComputer ) {
-    alert ("It's a tie. :)");
-} else if (scoreClient > scoreComputer) {
-    alert ("Congradulations! You WON");
-} else if (scoreComputer > scoreClient) {
-    alert ("Sadly, you lost.");
-}
+const buttons = document.querySelectorAll('button');
 
-console.log("Your score is: " + scoreClient);
-console.log("Computer score is: " + scoreComputer);
+let scoreComputer=0;
+let scorePlayer=0;
+const scoringComputer = document.getElementById('pc');
+const scoringPlayer = document.getElementById('hu');
+const textAnnouncement = document.querySelector('.winner');
+const announcementScreen = document.querySelector('.announcement');
+
+
+buttons.forEach(button => 
+    button.addEventListener("click", function() {
+        const playerChoice = button.id;
+        let computerChoice = getRndInteger(1,4);
+
+        resultRound(playerChoice, computerChoice);
+        
+        scoringComputer.textContent = 'Score CPU: ' + scoreComputer;
+        scoringPlayer.textContent = 'Score YOU: ' + scorePlayer;
+
+        console.log("clicked");
+        console.log(playerChoice);
+        console.log(computerChoice);
+        console.log(scorePlayer);
+        console.log(scoreComputer);
+
+        if (scoreComputer == 5) {
+            textAnnouncement.textContent = 'YOU LOST!';
+            announcementScreen.style.cssText = 'visibility: visible; opacity: 1;';
+            console.log("lost");
+        }
+
+        if (scorePlayer == 5) {
+            textAnnouncement.textContent = 'YOU WON!';
+            announcementScreen.style.cssText = 'visibility: visible; opacity: 1;';
+            console.log("won");
+        }
+    }
+));
+
+
+
+
