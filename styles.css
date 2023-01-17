@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    cursor: crosshair;
 }
 
 body {
@@ -84,28 +85,69 @@ body {
     transition: opacity 0.7s;
 }
 
-.announcement h1 {
+.announcement h1, .roundWinner h1 {
     font-size: 50px;
     font-weight: 600;
     font-family: 'Orbitron', sans-serif;
 }
 
 
-.announcement h2 {
+.announcement h2, .roundWinner h2, .reason {
     font-size: 30px;
     font-weight: 600;
     font-family: 'Orbitron', sans-serif;
     transition: all 0.3s ease;
 }
 
-.announcement h2:hover {
+.announcement h2:hover, .roundWinner h2:hover {
 
     text-shadow: 2px 2px 0px rgba(140,140,140,0.89);
-
+    color: rgb(45, 207, 30);
+    cursor: pointer;
 }
 
-.announcement h2 a{
+.announcement h2 a, .roundWinner h2 a{
     text-decoration: none;
     color: black;
 }
 
+.roundWinner {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+     left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70vw;
+    height: 70vh;
+    visibility: hidden;
+    display: flex; 
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    transition: opacity 0.7s;
+    
+    --g: 4px;     /* the gap */
+    --b: 12px;    /* border thickness*/
+    --c: white; /* the color */
+    
+    padding: calc(var(--g) + var(--b));
+    --_c: brown 0 25%, var(--c) 0 50%;
+    --_g1: repeating-linear-gradient(90deg ,var(--_c)) repeat-x;
+    --_g2: repeating-linear-gradient(180deg,var(--_c)) repeat-y;
+    background:
+      var(--_g1) var(--_p, 25%) 0   ,var(--_g2) 0    var(--_p,125%),
+      var(--_g1) var(--_p,125%) 100%,var(--_g2) 100% var(--_p, 25%);
+    background-size: 200% var(--b),var(--b) 200%;
+    cursor: pointer;
+    filter: grayscale(50%);
+    transition: .3s;
+    background-color: white;
+}
+
+.roundWinner:hover {
+    --_p: 75%;
+    filter: grayscale(0%);
+    cursor: crosshair;
+}
